@@ -65,11 +65,6 @@ namespace WGestures.View.Impl.Windows
             get { return _shadowPenWidth; }
             set { /*_shadowPenWidth = _shadowPen.Width = value;*/ } //TODO: ignore for temporarily
         }
-        public int PathMaxPointCount
-        {
-            get { return _pathMaxPointCount; }
-            set { _pathMaxPointCount = value; }
-        }
         public bool ShowPath { get; set; }
         public bool ShowCommandName { get; set; }
         public bool ViewFadeOut { get; set; }
@@ -96,7 +91,6 @@ namespace WGestures.View.Impl.Windows
 
         Rectangle _screenBounds = Native.GetScreenBounds();
         float _dpiFactor = Native.GetScreenDpi() / 96.0f;
-        int _pathMaxPointCount;
 
         CanvasWindow _canvasWindow;
         DiBitmap _canvasBuf;
@@ -171,7 +165,6 @@ namespace WGestures.View.Impl.Windows
             ShowPath = true;
             ViewFadeOut = true;
 
-            _pathMaxPointCount = (int)(512 * _dpiFactor);
 
             var widthBase = 2 * _dpiFactor;
 
@@ -223,20 +216,8 @@ namespace WGestures.View.Impl.Windows
         private void HandlePathGrow(PathEventArgs args)
         {
             if (!ShowPath && !ShowCommandName) return;
-            if (_pointCount > _pathMaxPointCount) return;
-
+            
             _pointCount++;
-
-            if (_pointCount == _pathMaxPointCount)
-            {
-                ShowLabel(Color.White, "您是有多无聊啊 :)", Color.FromArgb(150, 255, 0, 0));
-
-                DrawAndUpdate();
-                _labelChanged = false;
-                _recognizeStateChanged = false;
-
-                return;
-            }
 
             var curPos = args.Location;//ToUpLeftCoord(args.Location);
 
