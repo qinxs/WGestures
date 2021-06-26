@@ -166,14 +166,14 @@ namespace WGestures.View.Impl.Windows
             ViewFadeOut = true;
 
 
-            var widthBase = 2 * _dpiFactor;
+            var widthBase = 2 * _dpiFactor + 1;
 
             #region init pens
             _mainPen = new Pen(Color.FromArgb(255, 50, 200, 100), widthBase) { EndCap = LineCap.Round, StartCap = LineCap.Round };
             _middleBtnPen = new Pen(Color.FromArgb(255, 20, 150, 200), widthBase) { EndCap = LineCap.Round, StartCap = LineCap.Round };
             _xBtnPen = new Pen(Color.FromArgb(255, 20, 100, 200), widthBase) { EndCap = LineCap.Round, StartCap = LineCap.Round };
             _borderPen = new Pen(Color.FromArgb(255, 255, 255, 255), widthBase + 4) { EndCap = LineCap.Round, StartCap = LineCap.Round };
-            _alternativePen = new Pen(Color.FromArgb(255, 255, 120, 20), widthBase) { EndCap = LineCap.Round, StartCap = LineCap.Round };
+            _alternativePen = new Pen(Color.FromArgb(230, 255, 120, 20), widthBase) { EndCap = LineCap.Round, StartCap = LineCap.Round };
 
 
             //_shadowPen = new Pen(Color.FromArgb(25, Color.Black), widthBase * 3) { EndCap = LineCap.Round, StartCap = LineCap.Round };
@@ -484,7 +484,7 @@ namespace WGestures.View.Impl.Windows
             if (ShowPath && _pathVisible)
             {
                 //g.DrawPath(_shadowPen, _gPath);
-                g.DrawPath(_borderPen, _gPath);
+                // g.DrawPath(_borderPen, _gPath);
                 g.DrawPath(_pathPen, _gPath);
             }
             #endregion
