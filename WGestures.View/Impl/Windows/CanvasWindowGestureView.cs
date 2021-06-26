@@ -227,16 +227,20 @@ namespace WGestures.View.Impl.Windows
                 var pA = new Point(_prevPoint.X - _screenBounds.X, _prevPoint.Y - _screenBounds.Y);
                 var pB = new Point(curPos.X - _screenBounds.X, curPos.Y - _screenBounds.Y);
 
-                if (pA != pB)
-                {
+                // 使划线更平滑
+                // if (pA != pB)
+                int x = Math.Abs(pB.X - pA.X);
+                int y = Math.Abs(pB.Y - pA.Y);
+                if ((x * x + y * y) < 16) {return;}
+                else {
                     _gPath.AddLine(pA, pB);
 
                     _gPathDirty.Reset();
                     _gPathDirty.AddLine(pA, pB);
                     _gPathDirty.Widen(_dirtyMarkerPen);
+                    curPos = new Point(pB.X + _screenBounds.X, pB.Y + _screenBounds.Y);
                 }
 
-                curPos = new Point(pB.X + _screenBounds.X, pB.Y + _screenBounds.Y);
             }
 
             DrawAndUpdate();
