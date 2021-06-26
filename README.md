@@ -13,6 +13,8 @@ WGestures鼠标手势 for Windows.
 
 - 去除线条白边框，并适当加粗原线条
 
+- lable 文字框样式调整
+
 - 制作成绿色版
 
 - 关闭标签（Ctrl + W）与关闭窗口（Alt + F4）合一

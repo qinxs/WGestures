@@ -256,7 +256,7 @@ namespace WGestures.View.Impl.Windows
             {
                 var modifierText = intent.Gesture.Modifier.ToMnemonic();
                 var newLabelText = intent.Name + (modifierText == String.Empty ? String.Empty : (" " + modifierText));
-                ShowLabel(Color.White, newLabelText, Color.FromArgb(120, 0, 0, 0));
+                ShowLabel(Color.White, newLabelText, Color.FromArgb(180, 51, 105, 232));
             }
             
             if (!_isCurrentRecognized && ShowPath)
@@ -501,7 +501,7 @@ namespace WGestures.View.Impl.Windows
                         -1f * _dpiFactor, -1f * _dpiFactor),
                         (int)(12 * _dpiFactor), shadow, Color.Transparent);*/
                     DrawRoundedRectangle(g, RectangleF.Inflate(_labelRect,
-                        -2.6f * _dpiFactor, -2.6f * _dpiFactor),
+                        -5.2f * _dpiFactor, -5.2f * _dpiFactor),
                         0, pen, _labelBgColor);
 
                     //if (_labelColor != Color.White)
