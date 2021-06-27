@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using WGestures.Common.Product;
 
@@ -32,7 +33,11 @@ namespace WGestures.App
 
         public static string UserDataDirectory
         {
-            get { return Application.LocalUserAppDataPath; }
+            get {
+                if (!Directory.Exists("user-data"))
+                    Directory.CreateDirectory("user-data");
+                return "user-data";
+            }
         }
 
 
