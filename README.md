@@ -17,8 +17,10 @@ WGestures鼠标手势 for Windows.
 
 - 制作成绿色版
 
-- 关闭标签（Ctrl + W）与关闭窗口（Alt + F4）合一
+- ~~关闭标签（Ctrl + W）与关闭窗口（Alt + F4）合一~~
 
+> 配置文件目录为 user-data
+  
   
 
 ---
