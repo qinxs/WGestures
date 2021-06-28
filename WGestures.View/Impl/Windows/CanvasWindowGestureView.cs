@@ -102,9 +102,10 @@ namespace WGestures.View.Impl.Windows
         Color _labelColor;
         Color _systemColor;
         Color _labelBgColor;
+        Color _StrokeColor;
         bool _labelChanged;
         GraphicsPath _labelPath = new GraphicsPath();
-        Font _labelFont = new Font("微软雅黑", 32);
+        Font _labelFont = new Font("微软雅黑", 40);
 
         bool _isCurrentRecognized;
         bool _recognizeStateChanged;
@@ -268,6 +269,7 @@ namespace WGestures.View.Impl.Windows
                 _isCurrentRecognized = true;
                 _recognizeStateChanged = true;
                 _pathPen = _tempMainPen;
+                _StrokeColor = _pathPen.Color;
                 //ResetPathDirtyRect();
             }
 
@@ -504,13 +506,13 @@ namespace WGestures.View.Impl.Windows
                     /*DrawRoundedRectangle(g, RectangleF.Inflate(_labelRect,
                         -1f * _dpiFactor, -1f * _dpiFactor),
                         (int)(12 * _dpiFactor), shadow, Color.Transparent);*/
-                    DrawRoundedRectangle(g, RectangleF.Inflate(_labelRect,
-                        -5.2f * _dpiFactor, -5.2f * _dpiFactor),
-                        0, pen, _labelBgColor);
+                    // DrawRoundedRectangle(g, RectangleF.Inflate(_labelRect,
+                    //     -5.2f * _dpiFactor, -5.2f * _dpiFactor),
+                    //     0, pen, _labelBgColor);
 
                     //if (_labelColor != Color.White)
-                        //using (var stroke = new Pen(Color.Black, 1.5f * _dpiFactor))
-                        //    g.DrawPath(stroke, _labelPath);
+                    using (var stroke = new Pen(_StrokeColor, 6f * _dpiFactor))
+                       g.DrawPath(stroke, _labelPath);
 
                     using (Brush brush = new SolidBrush(_labelColor)) g.FillPath(brush, _labelPath);
                 }
@@ -626,7 +628,9 @@ namespace WGestures.View.Impl.Windows
             _lastLabelRect = _labelRect;
 
             _labelPath.Reset();
-            var msgPos = new PointF(_screenBounds.Width / 2, (_screenBounds.Height / 2) + _screenBounds.Width / 8);
+            Rectangle workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+            var taskBarHeight = (_screenBounds.Width - workingArea.Width) + (_screenBounds.Height - workingArea.Height);
+            var msgPos = new PointF(_screenBounds.Width / 2, workingArea.Height - 3 * taskBarHeight / 2);
             
             _labelPath.AddString(_labelText, _labelFont.FontFamily, 0, _labelFont.Size * _dpiFactor, msgPos, StringFormat.GenericDefault);
             _labelRect = _labelPath.GetBounds();
