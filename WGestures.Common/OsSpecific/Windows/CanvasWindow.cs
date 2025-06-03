@@ -53,7 +53,7 @@ namespace WGestures.Common.OsSpecific.Windows
                 int style = User32.GetWindowLong(Handle, User32.GWL.GWL_STYLE);
                 if (value)
                 {
-                    style |= (int)User32.WS.WS_VISIBLE;
+                    style |= (int)User32.WS.WS_VISIBLE | (int)User32.WS.WS_MINIMIZE;
                 }
                 else
                 {
