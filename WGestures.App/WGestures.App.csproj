@@ -40,7 +40,6 @@
     <Prefer32Bit>false</Prefer32Bit>
     <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
     <OutputType>Exe</OutputType>
-
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -367,6 +366,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="绿色版使用说明.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="cert\YingDevCA.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

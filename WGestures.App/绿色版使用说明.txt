@@ -1,0 +1,13 @@
+1 先执行 !绿化&卸载.bat，导入证书
+2 如果您使用的不是windows系统管理员用户 
+  需 右键 WGestures.exe -> 属性 -> 兼容性，选中 以管理员身份运行此程序
+
+------------------------------------------------------------------
+绿化版
+https://github.com/qinxs/WGestures
+原作者
+https://github.com/yingDev/WGestures
+
+
+为何需要安装根证书？
+https://github.com/yingDev/WGestures/issues/7
