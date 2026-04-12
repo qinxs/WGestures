@@ -449,6 +449,14 @@ namespace WGestures.App
             TogglePause();
         }
 
+        static void menuItem_restart_Click(object sender, EventArgs eventArgs)
+        {
+            gestureParser.Stop();
+            Application.ExitThread();
+            trayIcon.Dispose();
+            Process.Start(Application.ExecutablePath);
+        }
+
         static void menuItem_exit_Click(object sender, EventArgs e)
         {
             gestureParser.Stop();
@@ -616,6 +624,9 @@ namespace WGestures.App
             menuItem_pause = new MenuItem() { Text = "暂停" };
             menuItem_pause.Click += menuItem_pause_Click;
 
+            var menuItem_restart = new MenuItem() { Text = "重新启动" };
+            menuItem_restart.Click += menuItem_restart_Click;
+
             var menuItem_settings = new MenuItem() { Text = "设置" };
             menuItem_settings.Click += menuItem_settings_Click;
 
@@ -628,7 +639,16 @@ namespace WGestures.App
                ToggleTrayIconVisibility();
             };*/
 
-            contextMenu1.MenuItems.AddRange(new[] { /*menuItem_toggleTray, */menuItem_pause, new MenuItem("-"), menuItem_settings,  menuItem_showQuickStart,new MenuItem("-"), menuItem_exit });
+            contextMenu1.MenuItems.AddRange(new[] { /*menuItem_toggleTray, */
+                menuItem_pause,
+                new MenuItem("-"),
+                menuItem_restart,
+                new MenuItem("-"),
+                menuItem_settings,
+                menuItem_showQuickStart,
+                new MenuItem("-"),
+                menuItem_exit
+            });
             notifyIcon.Icon = Resources.trayIcon;
             //notifyIcon.Text = Application.ProductName;
             notifyIcon.ContextMenu = contextMenu1;
